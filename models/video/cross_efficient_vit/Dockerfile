@@ -29,9 +29,8 @@ COPY requirements.txt .
 
 RUN pip install --no-cache-dir --upgrade pip setuptools wheel && \
     pip install --no-cache-dir \
-    torch==1.11.0 \
-    torchvision==0.12.0 \
-    torchaudio==0.11.0 \
+    torch==1.13.1 \
+    torchvision==0.14.1 \
     --index-url https://download.pytorch.org/whl/cpu
 
 # NumPy version will be handled by requirements.txt now

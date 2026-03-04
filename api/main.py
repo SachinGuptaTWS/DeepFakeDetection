@@ -48,7 +48,7 @@ from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from fastapi import Depends, status
 from datetime import datetime, timedelta
 from sqlalchemy.orm import Session
-from database import init_db, get_db, AnalysisHistory
+from database import init_db, get_db, AnalysisHistory, SessionLocal
 
 # --- Logging Configuration ---
 logging.basicConfig(
@@ -583,7 +583,7 @@ def query_model_api(
     for attempt in range(MAX_RETRIES + 1):
         try:
             response = requests.post(
-                model_predict_url, json=payload, timeout=DEFAULT_TIMEOUT
+                model_predict_url, json=payload, timeout=(3, DEFAULT_TIMEOUT)
             )
             response.raise_for_status()
             result = response.json()
